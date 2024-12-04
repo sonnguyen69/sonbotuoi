@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+int a[100001];
+long long p[400004];
+void build (int id,int l,int r)
+{
+    if (l==r) p[id]=a[l];
+    else
+    {
+        int g=(l+r)/2;
+        build(2*id,l,g);
+        build(2*id+1,g+1,r);
+        p[id]=p[2*id+1]+p[2*id];
+    }
+}
+void update(int id,int l,int r,int pos,int val)
+{
+    if (l==r) p[id]=val;
+    else
+    {
+        int m=(l+r)/2;
+        if (pos<=m) update(id*2,l,m,pos,val);
+        else update(id*2+1,m+1,r,pos,val);
+        p[id]=p[2*id+1]+p[2*id];
+    }
+}
+long long get(int id,int l,int r,int u,int v)
+{
+    if (l>v || r<u) return 0;
+    if (l==r) return p[id];
+    else
+    {
+        int m=(l+r)/2;
+        long long x=get(id*2,l,m,u,v);
+        long long y=get(id*2+1,m+1,r,u,v);
+        return x+y;
+    }
+}
+int main()
+{
+    int n,t; cin>>n>>t;
+    for (int i=1;i<=n;i++) cin>>a[i];
+    build (1,1,n);
+    while (t--)
+    {
+        int d,l,r; cin>>d>>l>>r;
+        if (d==1)
+        {
+            cout<<get(1,1,n,l,r)<<'\n';
+        }
+        if (d==2)
+        {
+            update(1,1,n,l,r);
+        }
+    }
+}
