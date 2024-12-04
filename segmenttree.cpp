@@ -2,7 +2,7 @@
 using namespace std;
 #define ll long long
 ll a[1000001],t[4000001];
-void build(ll id,ll l,ll r)
+void build(ll id, ll l,ll r)
 {
     if(l == r)
     {
