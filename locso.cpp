@@ -1,47 +1,72 @@
 #include<bits/stdc++.h>
-#define ll long long
-#define MAXN 1000007
 using namespace std;
-
-int main() {
+int main()
+{
+    vector<string>a;
+    vector<string>b;
     string s;
-    getline(cin, s);
-    string res = "";
-    string ans = "";
-    bool kt=1;
-    bool ktres=0;
-    for (ll i = 0; i <= s.size(); i++)
-    {
-        if (s[i]=='-') kt=0;
-        if (i < s.size() && isdigit(s[i]))
+    getline(cin,s);
+    s=' '+s;
+    s+=' ';
+    for(int i=0;i<s.size();i++)
         {
-            res += s[i];
+            if(s[i]=='-')
+                {
+                    s.insert(i," ");
+                    i++;
+
+                }
+            if(isdigit(s[i])==0&&s[i]!='-')
+                s[i]=' ';
+            while(s[i]=='0'&&s[i-1]==' ')
+                s[i]=' ';
         }
-        else
+
+    string c;
+    stringstream ss(s);
+    while(ss>>c)
+    {
+        if(c[0]=='-')
             {
-            if (!res.empty())
-            {
-                while (res.size() > 1 && res[0] == '0')
-                {
-                    res.erase(0, 1);
-                }
-                if(res=="0" && ktres==0)
-                {
-                    ans="0";
-                }
-                else if ((res.size() > ans.size() || (res.size() == ans.size() && res > ans)) && kt>=ktres)
-                {
-                    ans = res;
-                    if(kt)
-                    {
-                        ktres=1;
-                    }
-                    else ktres=0;
-                }
-                res = "";
+                c.erase(0,1);
+                b.push_back(c);
             }
+        else
+        {
+            a.push_back(c);
         }
     }
+    string res="";
 
-    cout << ans << "\n";
+    for(int i=0;i<a.size();i++)
+        {
+            if(a[i].size()>res.size())
+                res=a[i];
+            else if(a[i].size()==res.size())
+            {
+                if(a[i]>res)
+                    res=a[i];
+            }
+        }
+
+    if(res!="")
+        cout<<res;
+    else
+        {
+            string res1=b[0];
+    for(int i=1;i<b.size();i++)
+    {
+        if(b[i].size()<res1.size())
+                res1=b[i];
+            else if(b[i].size()==res1.size())
+            {
+                if(b[i]<res1)
+                    res1=b[i];
+            }
+    }
+    if(res1!="0")
+        res1="-"+res1;
+    cout<<res1;
+        }
+
 }
