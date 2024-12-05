@@ -2,11 +2,11 @@
 #define ll long long
 using namespace std;
 ll dp[1000005];
-struct son{
+struct sonbotuoi{
     ll w, v;
 };
-son a[1000005];
-bool cmp(son x,son y)
+sonbotuoi a[1000005];
+bool cmp(sonbotuoi x,sonbotuoi y)
 {
     return y.w * x.v > x.w * y.v;
 }
