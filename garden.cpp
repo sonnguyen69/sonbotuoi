@@ -21,9 +21,18 @@ int main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0);
     cin>>n>>k;
+    ll vtmax=0,gtrimax=0;
     for(int i=1;i<=n;i++)   cin>>a[i]>>b[i];
+    for(int i=1;i<=n;i++)
+    {
+        if(b[i]>gtrimax)
+        {
+            gtrimax=b[i];
+            vtmax=i;
+        }
+    }
     ll l=1;
-    ll r=1e14;
+    ll r=a[vtmax]+gtrimax*k;
     ll res=0;
     while(l<=r)
     {
