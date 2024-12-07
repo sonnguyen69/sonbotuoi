@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-// ý tưởng là loang từ bên ngoài vào để tìm kiếm thành phân liên thông khi mà loang từ độ cao h->hmax.
+// ý tưởng là loang từ bên ngoài vào để tìm kiếm thành phân liên thông khi mà loang từ độ cao 0 -> hmax.
 int n, m;
 int seawater[102][102];
 int Hmax=0;
