@@ -1,63 +1,49 @@
 #include<bits/stdc++.h>
 using namespace std;
-char a[107][107];
-bool mark[107][107];
-int dx[10], dy[10];
-int n, m;
-void abc()
+bool mark[101][101];
+char a[101][101];
+int n,m;
+bool check(int x,int y)
 {
-    dx[1]=-1;
-    dx[2]=-1;
-    dx[3]=0;
-    dx[4]=1;
-    dx[5]=1;
-    dx[6]=1;
-    dx[7]=0;
-    dx[8]=-1;
-    dy[1]=0;
-    dy[2]=1;
-    dy[3]=1;
-    dy[4]=1;
-    dy[5]=0;
-    dy[6]=-1;
-    dy[7]=-1;
-    dy[8]=-1;
+    if(x<1||x>n||y<1||y>m) return 0;
+    if(a[x][y]=='.') return 0;
+    return 1;
 }
-void dfs(int i, int j)
+int d[8]={-1,1,0,0,1,-1,1,-1};
+int f[8]={0,0,1,-1,1,-1,-1,1};
+void dfs(int x,int y)
 {
-    mark[i][j]=1;
-    for (int k=1; k<=8; k++)
+    mark[x][y]=1;
+    cout<<x<<' '<<y<<' ';
+    for(int i=0;i<8;i++)
     {
-        int i1=i+dx[k];
-        int j1=j+dy[k];
-        if(i1>=1 && i1<=n && j1>=1 && j1<=m && a[i1][j1]=='W' && mark[i1][j1]==0)
-        {
-            dfs(i1, j1);
-        }
+        int x1=x+d[i];
+        int y1=y+f[i];
+        if(check(x1,y1)==1&&mark[x1][y1]!=1) dfs(x1,y1);
     }
 }
 int main()
 {
-    abc();
-    memset(mark, 0, sizeof(mark));
-    cin>>n>>m;
-    for (int i=1; i<=n; i++)
+    int dem=0;
+     cin>>n>>m;
+    for(int i=1;i<=n;i++)
     {
-        for (int j=1; j<=m; j++)
+        for(int j=1;j<=m;j++)
         {
             cin>>a[i][j];
+            mark[i][j]=0;
         }
     }
-    int dem=0;
-   for (int i=1; i<=n; i++)
+    for(int i=1;i<=n;i++)
     {
-        for (int j=1; j<=m; j++)
+        for(int j=1;j<=m;j++)
         {
-           if(a[i][j]=='W' && mark[i][j]==0)
-           {
-               dfs(i, j);
-               dem++;
-           }
+            if(mark[i][j]==0&&a[i][j]!='.')
+            {
+              dfs(i,j);
+              cout<<endl;
+              dem++;
+            }
         }
     }
     cout<<dem;
