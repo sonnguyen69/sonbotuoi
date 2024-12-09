@@ -460,3 +460,132 @@ for (int i=k;i<=n;i++)
 //8.Tìm kiếm nhị phân
 // (x+y-1)/y
 // (m-a+b-1)/y
+// GRAPH
+#include<bits/stdc++.h>
+#define ll long long
+#define MAXN 1007
+using namespace std;
+char c[MAXN][MAXN];
+bool mark[MAXN][MAXN];
+ll dx[5], dy[5];
+void abc()
+{
+    dx[1]=-1; dy[1]=0;
+    dx[2]=0; dy[2]=1;
+    dx[3]=1; dy[3]=0;
+    dx[4]=0; dy[4]=-1;
+}
+ll n, m;
+void dfs(ll i, ll j)
+{
+    mark[i][j]=1;
+    for (ll k=1; k<=4; k++)
+    {
+        ll i1=i+dx[k];
+        ll j1=j+dy[k];
+        if(i1>=1 && i1<=n && j1>=1 && j1<=m && c[i1][j1]=='W' && mark[i1][j1]==0)
+        {
+            dfs(i1, j1);
+        }
+    }
+}
+void bfs(ll i, ll j)
+{
+    mark[i][j]=1;
+    queue<pair<ll, ll>> q;
+    q.push({i, j});
+    while(!q.empty())
+    {
+        pair<ll, ll> top=q.front();
+        q.pop();
+        for (ll k=1; k<=4; k++)
+        {
+            ll i1=top.first+dx[k];
+            ll j1=top.second+dy[k];
+            if(i1>=1 && i1<=n && j1>=1 && j1<=m && c[i1][j1]=='W' && mark[i1][j1]==0)
+            {
+                mark[i1][j1]=1;
+                q.push({i1, j1});
+            }
+        }
+    }
+}
+int main()
+{
+    abc();
+    memset(mark, 0, sizeof(mark));
+    cin>>n>>m;
+    for (ll i=1; i<=n; i++)
+    {
+        for (ll j=1; j<=m; j++)
+        {
+            cin>>c[i][j];
+        }
+    }
+    for (ll i=1; i<=n; i++)
+    {
+        for (ll j=1; j<=m; j++)
+        {
+            if(!mark[i][j] && c[i][j]=='W')
+            {
+                bfs(i, j);
+            }
+        }
+    }
+    for (ll i=1; i<=n; i++)
+    {
+        for (ll j=1; j<=m; j++)
+        {
+            cout<<mark[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+}
+#include<bits/stdc++.h>
+#define ll long long
+#define MAXN 100007
+using namespace std;
+vector<ll> dske[MAXN];
+bool mark[MAXN];
+void dfs(ll i)
+{
+    mark[i]=1;
+    for (ll x: dske[i])
+    {
+        if(!mark[x])
+        {
+            dfs(x);
+        }
+    }
+}
+void bfs(ll i)
+{
+    mark[i]=1;
+    queue<ll> q;
+    q.push(i);
+    while(!q.empty())
+    {
+        ll k=q.front();
+        q.pop();
+        for (auto x: dske[k])
+        {
+            if(!mark[x])
+            {
+                q.push(x);
+                mark[x]=1;
+            }
+        }
+    }
+}
+int main()
+{
+    ll n, m;
+    cin>>n>>m;
+    for (ll i=1; i<=m; i++)
+    {
+        ll u, v;
+        cin>>u>>v;
+        dske[u].push_back(v);
+    }
+
+}
