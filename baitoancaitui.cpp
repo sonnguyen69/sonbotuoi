@@ -2,12 +2,11 @@
 #define ll long long
 using namespace std;
 ll dp[1000005];
-struct sonbotuoi{
+struct sonbotuoi {
     ll w, v;
 };
 sonbotuoi a[1000005];
-bool cmp(sonbotuoi x,sonbotuoi y)
-{
+bool cmp(sonbotuoi x, sonbotuoi y) {
     return y.w * x.v > x.w * y.v;
 }
 int main() {
@@ -17,7 +16,7 @@ int main() {
     for (ll x = 1; x <= n; x++) {
         cin >> a[x].w >> a[x].v;
     }
-    sort(a + 1, a + 1 + n,cmp);
+    sort(a + 1, a + 1 + n, cmp);
     for (ll x = 1; x <= n; x++) {
         ll w = a[x].w, v = a[x].v;
         tam = min(m, tam + w);

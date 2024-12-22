@@ -6,7 +6,7 @@ ll catalan(int k) {
     for (int i = 0; i < k; i++) {
         kq = kq * (2 * k - i) / (i + 1); // Tính từng bước
     }
-    return kq / (k + 1); 
+    return kq / (k + 1);
 }
 int main() {
     ios_base::sync_with_stdio(0);

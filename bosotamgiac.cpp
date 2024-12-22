@@ -15,8 +15,8 @@ int tknp(ll a[], int l, int r, ll t) {
     return res;
 }
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     int n;
     cin >> n;
     ll a[n + 1];
@@ -35,4 +35,4 @@ int main() {
     }
     cout << kq;
 }
-    
+

@@ -1,12 +1,13 @@
-// tìm tổ hợp kế tiếp của mảng
+/* tìm tổ hợp kế tiếp của mảng
 vd1: 5 3
-  1 2 3
-  với n=5,k=3 có các tổ hợp (1 2 3), ( 1 2 4), ( 1 2 5),...
-  tìm tổ hợp kế tiếp --> (1,2,4)
-  vì người 3 không có trong tổ hợp kế tiếp --> kq: 1
-vd2: 6 4
-     3 4 5 6
-     với n=6,k=4 thì (3,4,5,6) là tổ hợp cuối cùng --> cả 4 người đều được nghỉ --> kq=4
+1 2 3
+với n = 5, k = 3 có các tổ hợp(1 2 3), (1 2 4), (1 2 5), ...
+tìm tổ hợp kế tiếp-- > (1, 2, 4)
+vì người 3 không có trong tổ hợp kế tiếp-- > kq: 1
+vd2 : 6 4
+3 4 5 6
+với n = 6, k = 4 thì(3, 4, 5, 6) là tổ hợp cuối cùng-- > cả 4 người đều được nghỉ-- > kq = 4
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int a[40], b[40];

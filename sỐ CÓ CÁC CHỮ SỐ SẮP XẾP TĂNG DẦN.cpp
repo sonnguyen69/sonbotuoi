@@ -17,15 +17,15 @@ ll modu(ll a, ll m) {
 ll dem(int x) {
     ll t = 1;
     for (int i = 1; i <= 9; i++) {
-        t = (t * (x + i)) % mod;             
-        t = (t * modu(i, mod)) % mod; 
+        t = (t * (x + i)) % mod;
+        t = (t * modu(i, mod)) % mod;
     }
     return t;
 }
 
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     int q;
     cin >> q;
     while (q--) {
